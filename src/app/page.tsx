@@ -67,7 +67,7 @@ export default async function Home(props:any) {
       <ListFunctions></ListFunctions>
       <ListInfo></ListInfo>
       <section className={`bg-primary flex flex-col items-center ${montserrat.className} py-8 relative`}>
-        <h1 className="text-5xl my-6 text-center">{JSON.stringify(props)}</h1>
+        <h1 className="text-5xl my-6 text-center">Posts</h1>
         <ListPosts data={data}></ListPosts>
       </section>
     </>
