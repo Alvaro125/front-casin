@@ -9,18 +9,24 @@ import { ListInfo } from "@/components/home/list_info";
 const montserrat = Montserrat({
   subsets: ["latin"],
 });
-async function getData() {
-  const res = await fetch('http://localhost:3000/api/notion',{
-    cache: "no-store",
-  })
-  if (!res.ok) {
-    throw new Error('Failed to fetch data')
+export default async function Home(props:any) {
+  async function getData() {
+    try{
+      const res = await fetch(process.env.API_URL+'/api/notion',{
+        cache: "no-store",
+      })
+      if (!res.ok) {
+        throw new Error('Failed to fetch data')
+      }
+      
+      return res.json()
+
+    }catch(err){
+      return []
+    }
   }
- 
-  return res.json()
-}
-export default async function Page() {
   const data = await getData()
+  
   return (
     <>
       <main
@@ -61,7 +67,7 @@ export default async function Page() {
       <ListFunctions></ListFunctions>
       <ListInfo></ListInfo>
       <section className={`bg-primary flex flex-col items-center ${montserrat.className} py-8 relative`}>
-        <h1 className="text-5xl my-6 text-center">Posts</h1>
+        <h1 className="text-5xl my-6 text-center">{JSON.stringify(props)}</h1>
         <ListPosts data={data}></ListPosts>
       </section>
     </>

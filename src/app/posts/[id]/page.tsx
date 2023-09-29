@@ -2,18 +2,25 @@ import { MarkdownText } from "@/components/ui/markdown"
 import { RichText } from "@/components/ui/rich_text"
 
 async function getPage(_id:string) {
-    const res = await fetch('http://localhost:3000/api/notion/page/'+_id,{
-        cache: "no-store",
-      })
-    if (!res.ok) {
-      throw new Error('Failed to fetch data')
+    try {
+        const res = await fetch(process.env.API_URL+'/api/notion/pg/'+_id,{
+            cache: "no-store",
+          })
+        if (!res.ok) {
+          throw new Error('Failed to fetch data')
+        }
+        
+        return res.json()
+    } catch (error) {
+        return null
     }
-    
-    return res.json()
   }
 
 export default async function Page({ params }: { params: { id: string } }) {
     const data = await getPage(params.id)
+    if (!data){
+        return <h1>not found</h1>
+    }
     return (
         <div className="pt-20">
             {
