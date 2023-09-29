@@ -1,13 +1,3 @@
-import {
-  FaHandHoldingHand,
-  FaPeopleArrows,
-  FaPeopleCarryBox,
-  FaPeopleGroup,
-  FaPeopleLine,
-  FaPeoplePulling,
-} from "react-icons/fa6";
-import { BsFillHeartFill, BsInstagram } from "react-icons/bs";
-import { RiSearchEyeLine } from "react-icons/ri";
 import CodeAnimation from "@/components/ui/code_animation";
 import Image from "next/image";
 import { Montserrat } from "next/font/google";
